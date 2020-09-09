@@ -1,26 +1,27 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
-env_path = Path(".") / ".env"
-load_dotenv(dotenv_path=env_path)
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ENV setting
+env = environ.Env()
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+# reading .env file
+environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "$qq@#m3&oi*tjh)tj**t%uja-g-q41dos&8d^$su!+&#g=ohy)"
+# SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = "ys(a4zs+hl$rwgvji9cm0h#qf*$@0lu!3-*t#df$(r4mj&u==)"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = env.bool("DEBUG", default=False)
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'developstoday.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "djoser",
-    'django_crontab',
+    "django_crontab",
     "blog.apps.BlogConfig",
 ]
 
@@ -68,17 +69,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "app.wsgi.application"
 
-NAME = os.getenv("DB_NAME")
-USER = os.getenv("DB_USER")
-PASSWORD = os.getenv("DB_PASSWORD")
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": NAME,
-        "USER": USER,
-        "PASSWORD": PASSWORD,
-        "HOST": "localhost",
+        # "NAME": env("POSTGRES_DB"),
+        # "NAME": env("DB_NAME"),
+        # "USER": env("DB_USER"),
+        # "PASSWORD": env("DB_PASSWORD"),
+
+        "NAME": os.environ.get('DB_NAME'),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        # "HOST": "db",
+        "HOST": os.environ.get("DB_HOST"),
         "PORT": "5432",
     }
 }
@@ -130,7 +133,7 @@ DJOSER = {
     "SERIALIZERS": {},
 }
 
-#REST_FRAMEWORK settings
+# REST_FRAMEWORK settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.BasicAuthentication",
@@ -141,10 +144,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 30,
 }
 
-CRONTAB_COMMAND_SUFFIX = '2>&1'
 
-#CRONTAB settings
-CRONJOBS = [
-    ('* * * * *', 'blog.cron.reset_post_upvotes')
-]
+# CRONTAB settings
+CRONJOBS = [("* * * * *", "blog.cron.reset_post_upvotes")]
 

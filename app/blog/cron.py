@@ -1,8 +1,9 @@
 from .models import Post
 
+
 def reset_post_upvotes():
-    print("cron work")
+    """Remove all votes via cronetab"""
+
     posts = Post.objects.all()
     for post in posts:
         post.votes.clear()
-    print("success")

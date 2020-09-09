@@ -4,6 +4,8 @@ from .models import Post, Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """Serializer for comments"""
+
     author = serializers.SlugRelatedField(slug_field="username", read_only=True)
 
     class Meta:
@@ -12,6 +14,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for posts"""
+
     author = serializers.SlugRelatedField(slug_field="username", read_only=True)
     comment_set = CommentSerializer(many=True, required=False, read_only=True)
     count_votes = serializers.IntegerField(read_only=True)
