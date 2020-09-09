@@ -1,15 +1,15 @@
 import os
 from pathlib import Path
 
-import environ
+# import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ENV setting
-env = environ.Env()
+# env = environ.Env()
 
 # reading .env file
-environ.Env.read_env()
+# environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = env.str("SECRET_KEY")
@@ -17,7 +17,7 @@ SECRET_KEY = "ys(a4zs+hl$rwgvji9cm0h#qf*$@0lu!3-*t#df$(r4mj&u==)"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env.bool("DEBUG", default=False)
-DEBUG = False
+DEBUG = True
 
 
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
