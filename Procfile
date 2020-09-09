@@ -1,1 +1,1 @@
-web: gunicorn app.app.wsgi
+web:cd project/; gunicorn app.wsgi

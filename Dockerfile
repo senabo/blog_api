@@ -2,10 +2,10 @@
 FROM python:3.8.3-alpine
 
 #create dir app
-RUN mkdir /app
+RUN mkdir /project
 
 # set work directory
-WORKDIR /app
+WORKDIR /project
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -21,4 +21,4 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy project
-COPY ./app /app
+COPY ./project /project

@@ -5,16 +5,16 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app:/app
+      - ./project:/project
     ports:
       - 8000:8000
     env_file:
-      - app/app/.env
+      - project/app/.env
     depends_on:
       - db
   db:
     image: "postgres" # use latest official postgres version
     env_file:
-      - app/app/.env # configure postgres
+      - project/app/.env # configure postgres
 
 res_data:

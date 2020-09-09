@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 import environ
-import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,6 +18,7 @@ SECRET_KEY = "ys(a4zs+hl$rwgvji9cm0h#qf*$@0lu!3-*t#df$(r4mj&u==)"
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env.bool("DEBUG", default=False)
 DEBUG = False
+
 
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'developstoday.herokuapp.com']
@@ -73,9 +73,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         # "NAME": env("POSTGRES_DB"),
-        # "NAME": env("DB_NAME"),
         # "USER": env("DB_USER"),
         # "PASSWORD": env("DB_PASSWORD"),
+        # "HOST": 'localhost',
 
         "NAME": os.environ.get('DB_NAME'),
         "USER": os.environ.get("DB_USER"),
@@ -88,6 +88,7 @@ DATABASES = {
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -125,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # DJOSER settings
 DJOSER = {
@@ -150,4 +152,3 @@ REST_FRAMEWORK = {
 # CRONTAB settings
 CRONJOBS = [("* * * * *", "blog.cron.reset_post_upvotes")]
 
-django_heroku.settings(locals())
