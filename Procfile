@@ -1,1 +1,1 @@
-web: gunicorn app.app.wsgi --log-file -
+web:cd app/; python manage.py migrate --noinput; gunicorn app.wsgi
