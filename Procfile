@@ -1,1 +1,1 @@
-web:cd project/; gunicorn --bind 0.0.0.0:5000 app.wsgi:application
+web:cd project/; gunicorn app.wsgi
