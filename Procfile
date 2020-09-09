@@ -1,1 +1,1 @@
-web:cd app/; python manage.py migrate --noinput; gunicorn app.wsgi
+web: gunicorn app.app.wsgi
