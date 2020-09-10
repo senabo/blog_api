@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+my_secret_keys.py
+
 # C extensions
 *.so
 
@@ -105,6 +107,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+
 .env
 .venv
 env/
