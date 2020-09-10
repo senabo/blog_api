@@ -1,4 +1,5 @@
 # blog_api 
+https://developstoday.herokuapp.com/api/v1/blog/posts/
 ## Explanation
 CRUD API for posts, comments, upvotes (like [this](https://news.ycombinator.com/)). Based on Django and Django REST Framework.
 
