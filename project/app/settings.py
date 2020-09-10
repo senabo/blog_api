@@ -13,11 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = env.str("SECRET_KEY")
-SECRET_KEY = "ys(a4zs+hl$rwgvji9cm0h#qf*$@0lu!3-*t#df$(r4mj&u==)"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env.bool("DEBUG", default=False)
-DEBUG = True
+DEBUG = False
 
 
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -77,7 +77,7 @@ DATABASES = {
         # "PASSWORD": env("DB_PASSWORD"),
         # "HOST": 'localhost',
 
-        "NAME": os.environ.get('DB_NAME'),
+        "NAME": os.environ.get("DB_NAME"),
         "USER": os.environ.get("DB_USER"),
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         # "HOST": "db",
